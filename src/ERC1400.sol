@@ -4,6 +4,8 @@ pragma solidity ^0.8.20;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+//https://snowtrace.io/address/0xae33C49279cf0848dde5f92A2784a0aBA9395FA0/contract/43114/code
+
 contract ERC1400Token is ERC20 {
     constructor() ERC20("ERC1400", "TKN") {}
 }
