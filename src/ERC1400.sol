@@ -1,26 +1,14 @@
 // SPDX-License-Identifier: MIT
-
-import "forge-std/Script.sol";
-import "forge-std/console2.sol";
-import {Token} from "../src/Token.sol";
-
+// Compatible with OpenZeppelin Contracts ^5.0.0
 pragma solidity ^0.8.20;
 
-contract MappingsScript is Script {
-    function getMappingValue(address targetContract, uint256 mapSlot, address key) public view returns (uint256) {
-        bytes32 slotValue = vm.load(targetContract, keccak256(abi.encode(key, mapSlot)));
-        return uint256(slotValue);
-    }
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-    // forge script script/Mappings.s.sol:MappingsScript --rpc-url https://rpc.esync.network
-    function run() public view {
-        Token token = Token(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0);
+contract ERC1400Token is ERC20 {
+    constructor() ERC20("ERC1400", "TKN") {}
+}
 
-        uint256 balance = getMappingValue(address(token), 11, 0x1D64ec1f5b1fdC4373C3322394cf623C86792Ac7);
-        console2.log("Balance: ", balance);
-    }
-
-    /*
+/*
     to get the storage layout below:
         `forge inspect contracts/RocToken.sol:RocToken storageLayout`
 
@@ -91,5 +79,4 @@ contract MappingsScript is Script {
     |--------------------------------+---------------------------------------------------------------------+------+--------+-------+---------------------------------|
     | _isControllerByPartition       | mapping(bytes32 => mapping(address => bool))                        | 29   | 0      | 32    | contracts/RocToken.sol:RocToken |
     ╰--------------------------------+---------------------------------------------------------------------+------+--------+-------+---------------------------------╯
-    */
-}
+*/
