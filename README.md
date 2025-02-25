@@ -1,66 +1,29 @@
-## Foundry
+# forge-slots-inspect
+Contains forge helper scripts to read onchain state variables by inspecting contract slots via foundry.
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+It allows to inspect (private) contract variables such as
+- Arrays
+- Mappings
+- String
 
-Foundry consists of:
+## Examples / Usage
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### Arrays
 
-## Documentation
+**function run(address targetContract, uint256 startSlot)**
 
-https://book.getfoundry.sh/
+`forge script script/Arrays.s.sol --sig "run(address,uint256)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 24 --rpc-url https://rpc.esync.network`
 
-## Usage
+### Mappings
 
-### Build
+Load a value from a mapping for a particular key (e.g. ERC 20 token balance for an address).
 
-```shell
-$ forge build
-```
+**function run(address targetContract, uint256 startSlot, address key)**
 
-### Test
+`forge script script/Mappings.s.sol:MappingsScript --sig "run(address,uint256,address)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 11 0x1D64ec1f5b1fdC4373C3322394cf623C86792Ac7 --rpc-url https://rpc.esync.network`
 
-```shell
-$ forge test
-```
+### Strings
 
-### Format
+**function run(address targetContract, uint256 startSlot)**
 
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+`forge script script/Strings.s.sol --sig "run(address,uint256)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 6 --rpc-url https://rpc.esync.network`

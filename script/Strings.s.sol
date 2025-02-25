@@ -2,7 +2,6 @@
 
 import "forge-std/Script.sol";
 import "forge-std/console2.sol";
-import {Token} from "../src/Token.sol";
 
 pragma solidity ^0.8.20;
 
@@ -50,8 +49,6 @@ contract StringScript is Script {
 
     // forge script script/Strings.s.sol --rpc-url https://rpc.esync.network
     function run() public view {
-        Token token = Token(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0);
-
-        run(address(token), 6); // name
+        run(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0, 6); // name
     }
 }

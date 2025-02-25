@@ -2,7 +2,6 @@
 
 import "forge-std/Script.sol";
 import "forge-std/console2.sol";
-import {Token} from "../src/Token.sol";
 
 pragma solidity ^0.8.20;
 
@@ -12,17 +11,20 @@ contract MappingsScript is Script {
         return uint256(slotValue);
     }
 
+    // forge script script/Mappings.s.sol:MappingsScript --sig "run(address,uint256,address)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 11 0x1D64ec1f5b1fdC4373C3322394cf623C86792Ac7 --rpc-url https://rpc.esync.network
+    function run(address targetContract, uint256 startSlot, address key) public view {
+        uint256 balance = getMappingValue(targetContract, startSlot, key);
+        console2.log("Balance: ", balance);
+    }
+
     // forge script script/Mappings.s.sol:MappingsScript --rpc-url https://rpc.esync.network
     function run() public view {
-        Token token = Token(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0);
-
-        uint256 balance = getMappingValue(address(token), 11, 0x1D64ec1f5b1fdC4373C3322394cf623C86792Ac7);
-        console2.log("Balance: ", balance);
+        run(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0, 11, 0x1D64ec1f5b1fdC4373C3322394cf623C86792Ac7);
     }
 
     /*
     to get the storage layout below:
-        `forge inspect contracts/RocToken.sol:RocToken storageLayout`
+        `forge inspect contracts/ERC1400Token.sol:ERC1400Token storageLayout`
 
     ╭--------------------------------+---------------------------------------------------------------------+------+--------+-------+---------------------------------╮
     | Name                           | Type                                                                | Slot | Offset | Bytes | Contract                        |

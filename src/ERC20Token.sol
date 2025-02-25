@@ -4,12 +4,12 @@ pragma solidity ^0.8.20;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract Token is ERC20 {
+contract ERC20Token is ERC20 {
     constructor() ERC20("Token", "TKN") {}
 }
 
 /*
-forge inspect src/Token.sol:Token storageLayout
+forge inspect src/ERC20.sol:ERC20 storageLayout
 
 ╭--------------+-------------------------------------------------+------+--------+-------+---------------------╮
 | Name         | Type                                            | Slot | Offset | Bytes | Contract            |
