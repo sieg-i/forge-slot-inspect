@@ -25,7 +25,7 @@ contract ArrayScript is Script {
         return fullArr;
     }
 
-    // forge script script/Arrays.s.sol --sig "run(address,uint256)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 24 --rpc-url https://rpc.esync.network
+    // forge script script/Array.s.sol --sig "run(address,uint256)" 0xae33C49279cf0848dde5f92A2784a0aBA9395FA0 24 --rpc-url https://rpc.esync.network
     function run(address targetContract, uint256 startSlot) public view {
         uint256[] memory a = getFullArray(startSlot, targetContract); // minters
 
@@ -34,7 +34,7 @@ contract ArrayScript is Script {
         }
     }
 
-    // forge script script/Arrays.s.sol --rpc-url https://rpc.esync.network
+    // forge script script/Array.s.sol --rpc-url https://rpc.esync.network
     function run() public view {
         return run(0xae33C49279cf0848dde5f92A2784a0aBA9395FA0, 24); // controllers
     }
